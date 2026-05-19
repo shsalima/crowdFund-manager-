@@ -1,3 +1,4 @@
+import MainLayout from "./UI/layouts/MainLayout"
 
 
 function App() {
@@ -5,7 +6,8 @@ function App() {
 
   return (
     <>
-    <h1 >hy amilas</h1>
+   
+    <MainLayout />
      
     </>
   )
