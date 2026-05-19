@@ -1,7 +1,7 @@
 
 import { Link } from "react-router";
 
-export default function MainLayout() {
+export default function MainLayout({ children }) {
     return (
         <div className="flex min-h-screen bg-[#0b0c0e] text-white font-sans">
             
@@ -57,6 +57,9 @@ export default function MainLayout() {
                     </Link>
                 </div>
             </aside>
+            <main className="flex-1 p-6">
+                {children}
+            </main>
 
           
 
