@@ -1,5 +1,6 @@
 
 import { Link } from "react-router";
+import AppHeader from "./AppHeader";
 
 export default function MainLayout({ children }) {
     return (
@@ -57,9 +58,14 @@ export default function MainLayout({ children }) {
                     </Link>
                 </div>
             </aside>
+            <div>
+                <AppHeader />
             <main className="flex-1 p-6">
+
                 {children}
             </main>
+
+            </div>
 
           
 

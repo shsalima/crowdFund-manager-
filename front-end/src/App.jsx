@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router"
 import MainLayout from "./UI/layouts/MainLayout"
 import Dashboard from "./UI/pages/Dashboard";
+import AppHeader from "./UI/layouts/AppHeader";
 
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
    
 
 
-
     <MainLayout >
+   
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
       
