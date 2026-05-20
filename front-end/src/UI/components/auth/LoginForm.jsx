@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { MoveRight } from 'lucide-react';
-import { clearError, LoginUser } from '../../../store/slices/authSlice';
+import { clearError, loginUser } from '../../../store/slices/authSlice';
 
 export default function LoginForm() {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -22,7 +22,7 @@ export default function LoginForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(LoginUser(credentials));
+        dispatch(loginUser(credentials));
     };
 
     return (

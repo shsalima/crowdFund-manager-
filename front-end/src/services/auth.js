@@ -1,16 +1,17 @@
+import axios from "axios";
 
-
-const {API_URL} = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
 
 export const authService = {
-    login: async (credentials)=>{
-        const response = await fetch(`${API_URL}/auth/login`,{credentials});
-        return response.data //// kirej3 { token, user }
-    },
+  login: async (credentials) => {
+    const response = await axios.post(`${VITE_API_URL}/auth/login`,  credentials);
+    return response.data; //// kirej3 { token, user }
+  },
 
-    register: async (userInfo)=>{
-        const response = await fetch(`${API_URL}/auth/register`,{userInfo});
-        return response.data // kirej3 { token, user }
-    },
-    
-}
+  register: async (userInfo) => {
+    const response = await axios.post(`${VITE_API_URL}/auth/signUp`, userInfo);
+    console.log(response);
+
+    return response.data; // kirej3 { token, user }
+  },
+};

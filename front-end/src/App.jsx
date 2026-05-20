@@ -1,44 +1,34 @@
-import { Route, Routes, useLocation } from "react-router"
-import MainLayout from "./UI/layouts/MainLayout"
-import Dashboard from "./UI/pages/Dashboard";
+import { Route, Routes, useLocation } from "react-router";
+import MainLayout from "./UI/layouts/MainLayout";
+
 import AppHeader from "./UI/layouts/AppHeader";
 import Login from "./UI/pages/Login";
 import Register from "./UI/pages/Register";
-
+import Dashboard from "./UI/pages/Dashboard";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 function App() {
-  const { pathname } = useLocation();
-  const isAuthPage=pathname === "/login" || pathname === "register"
-  
+  const navigate = useNavigate();
+  const isAuth = true;
+
+  useEffect(() => {
+    if (isAuth == false) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <>
-    {isAuthPage ?(
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Routes>
-    ):(
-      
-    <MainLayout >
-   
-    <Routes>
-      <Route path="/dashboard" element={<Dashboard />} />
-      
-
-    </Routes>
-    </MainLayout >
-
-    )
-
-    }
-
-   
-
-
-     
+      <MainLayout>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </MainLayout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
