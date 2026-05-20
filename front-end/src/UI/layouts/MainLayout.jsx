@@ -12,7 +12,7 @@ import { logout } from "../../store/slices/authSlice";
 export default function MainLayout({ children }) {
   // Jabna l-path l-hali dyal l'application
   const { pathname } = useLocation();
-  const dispatch = useDispatch(); // 4. Crée-ina dispatch
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   
 

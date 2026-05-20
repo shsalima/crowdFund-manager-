@@ -1,4 +1,7 @@
+import { MoveRight } from "lucide-react";
 import DashboardStats from "../components/dashboard/DashboardStats";
+import ProjectCard from "../components/dashboard/ProjectCard";
+import { Link } from "react-router";
 
 export default function Dashboard() {
     const dummyProjects = [
@@ -40,13 +43,15 @@ export default function Dashboard() {
       <DashboardStats />
 
     
-      {/* <div className="space-y-6">
+      <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-bold text-white tracking-wide">Recent Projects</h2>
-          <button className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 transition-all cursor-pointer">
+          <Link 
+          to="/projects"
+          className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 transition-all cursor-pointer">
             <span>View all projects</span>
             <MoveRight size={14} />
-          </button>
+          </Link>
         </div>
 
       
@@ -55,7 +60,7 @@ export default function Dashboard() {
             <ProjectCard key={idx} project={project} />
           ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
