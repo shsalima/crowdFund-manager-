@@ -1,8 +1,25 @@
-
-import { Link } from "react-router";
+import { LayoutDashboard, FolderKanban, PlusCircle, LogOut } from "lucide-react";
+import { Link, useLocation } from "react-router";
 import AppHeader from "./AppHeader";
 
 export default function MainLayout({ children }) {
+    // Jabna l-path l-hali dyal l'application
+    const location = useLocation();
+
+
+    // Hna safi t9ad l-ghalat: l-variable isActive db rahi m-définya mzyan
+    const getLinkStyle=(path)=>{
+    const isActive = location.pathname === path;  
+           return `w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm transition-all duration-200 ` + 
+            (isActive 
+                ? "bg-white text-[#0b0c0e]" // Ila knti f la page (Active): bg bayda w l-ktba khla
+                : "text-zinc-400 hover:bg-[#111214] hover:text-white" // Hover normal: bg rmadiya khfifa
+            );
+    }
+
+   
+
+
     return (
         <div className="flex min-h-screen bg-[#0b0c0e] text-white font-sans">
             
@@ -26,22 +43,23 @@ export default function MainLayout({ children }) {
                             <nav className="space-y-1">
                                 <Link 
                                     to="/dashboard"
-                                    className="w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm text-zinc-400 hover:bg-[#111214] hover:text-white transition-all duration-200"
-                                >
+                                    className={getLinkStyle("/dashboard")}                                >
+                                    <LayoutDashboard size={18} />
                                     <span>Dashboard</span>
                                 </Link>
 
                                 <Link 
                                     to="/projects"
-                                    className="w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm text-zinc-400 hover:bg-[#111214] hover:text-white transition-all duration-200"
-                                >
+                                    className={getLinkStyle("/projects")}                                   >
+                                    <FolderKanban size={18} />
                                     <span>Projects</span>
                                 </Link>
 
                                 <Link 
                                     to="/create-project"
-                                    className="w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm text-zinc-400 hover:bg-[#111214] hover:text-white transition-all duration-200"
+                                    className={getLinkStyle("/create-project")}
                                 >
+                                    <PlusCircle size={18} />
                                     <span>Create Project</span>
                                 </Link>
                             </nav>
@@ -54,6 +72,7 @@ export default function MainLayout({ children }) {
                         to="/login" 
                         className="w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm text-zinc-400 hover:bg-[#111214] hover:text-white transition-all duration-200"
                     >
+                        <LogOut size={18} />
                         <span>Logout</span>
                     </Link>
                 </div>
