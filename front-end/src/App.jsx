@@ -12,13 +12,18 @@ import CreateProject from "./UI/pages/CreateProject";
 
 function App() {
   const navigate = useNavigate();
-  const isAuth = true;
+  const location = useLocation();
+  const isAuth = !!localStorage.getItem("token");
 
   useEffect(() => {
-    if (isAuth == false) {
+    if (!isAuth && location.pathname !== "login" && location.pathname !== "/register") {
+
       navigate("/login");
     }
-  }, []);
+    if(isAuth && (location.pathname === "login" || location.pathname === "register")){
+      navigate("/dashboard");
+    }
+  }, [isAuth, location.pathname, navigate]);
 
   return (
     <>
@@ -29,6 +34,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<Projects/>} />
           <Route path="/create-project" element={<CreateProject/>} />
+          <Route path="/" element={isAuth ? <Dashboard/> : <Login/>}/>
         </Routes>
       </MainLayout>
     </>

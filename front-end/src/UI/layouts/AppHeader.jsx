@@ -8,7 +8,7 @@ export default function AppHeader() {
     return (
         <header className="w-full bg-[#0b0c0e] py-5 px-10 border-b border-zinc-800/60 flex items-center">
             <h2 className="capitalize text-lg font-bold tracking-wide text-white">
-                {pageTitle || "Overview"}
+                {pageTitle }
             </h2>
         </header>
     );
