@@ -6,19 +6,22 @@ export default function ProjectCard({ project }) {
   return (
     <div className="bg-[#111214] border border-zinc-800/50 rounded-2xl p-6 flex flex-col justify-between transition-all hover:border-zinc-700/80">
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <span className={`text-[10px] font-bold px-2 py-1 rounded-md border flex items-center gap-1.5 ${
-            isOpen 
-              ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" 
-              : "text-zinc-400 bg-zinc-500/10 border-zinc-500/20"
-          }`}>
-            {isOpen ? <Clock size={12} /> : <CheckCircle size={12} />}
-            {project.status}
-          </span>
-          <button className="text-zinc-500 hover:text-red-400 p-2 hover:bg-red-500/10 rounded-xl transition-all cursor-pointer">
-            <Trash2 size={16} />
-          </button>
-        </div>
+      <div className="flex items-center justify-between mb-4">
+  <span 
+    className={`text-[10px] font-bold px-2 py-1 rounded-md border flex items-center gap-1.5 uppercase ${
+      isOpen 
+        ? "text-red-400 bg-red-500/10 border-red-500/20"  
+        : "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"         
+    }`}
+  >
+    {isOpen ? <Clock size={12} /> : <CheckCircle size={12} />}
+    {project.status}
+  </span>
+  
+  <button className="text-zinc-500 hover:text-red-400 p-2 hover:bg-red-500/10 rounded-xl transition-all cursor-pointer">
+    <Trash2 size={16} />
+  </button>
+</div>
 
         <h3 className="text-base font-bold text-white mb-2 tracking-wide">{project.title}</h3>
         <p className="text-xs text-zinc-400 leading-relaxed mb-6 line-clamp-2">{project.description}</p>
@@ -26,12 +29,12 @@ export default function ProjectCard({ project }) {
         <div className="mb-6">
           <div className="flex justify-between text-xs font-medium mb-2">
             <span className="text-zinc-500">Progress</span>
-            <span className="text-white font-semibold">{project.progress}%</span>
+            <span className="text-white font-semibold">{project.maxPercentPerInvestor}%</span>
           </div>
           <div className="w-full bg-[#16171a] h-1.5 rounded-full overflow-hidden border border-zinc-800/40">
             <div 
               className="bg-white h-full rounded-full transition-all duration-500" 
-              style={{ width: `${project.progress}%` }}
+              style={{ width: `${project.maxPercentPerInvestor}%` }}
             ></div>
           </div>
         </div>
@@ -41,11 +44,11 @@ export default function ProjectCard({ project }) {
         <div className="grid grid-cols-2 gap-4 border-t border-zinc-800/40 pt-4 mb-5">
           <div>
             <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Invested</span>
-            <span className="text-sm font-bold text-white">${project.invested}</span>
+            <span className="text-sm font-bold text-white">${project.currentAmount}</span>
           </div>
           <div className="text-right">
-            <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Target</span>
-            <span className="text-sm font-bold text-zinc-400">${project.target}</span>
+            <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Capital</span>
+            <span className="text-sm font-bold text-zinc-400">${project.capital}</span>
           </div>
         </div>
 
