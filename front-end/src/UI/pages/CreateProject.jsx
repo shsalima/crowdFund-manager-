@@ -15,9 +15,9 @@ export default function CreateProject() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    capital: "", // Target Capital
-    currentAmount: "", // Initial Investment
-    maxPercentPerInvestor: 50, // Default 50% kif l-backend
+    capital: "", 
+    currentAmount: "", 
+    maxPercentPerInvestor: 50, 
   });
 
   const handleChange = (e) => {
