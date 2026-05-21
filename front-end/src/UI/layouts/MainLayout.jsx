@@ -93,7 +93,7 @@ export default function MainLayout({ children }) {
           </div>
         </aside>
       )}
-      <div>
+      <div className="flex-1 ">
         {isAuthPage == false && <AppHeader />}
         <main className="flex-1 p-6">{children}</main>
       </div>

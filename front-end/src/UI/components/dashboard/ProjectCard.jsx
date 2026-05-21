@@ -41,11 +41,11 @@ export default function ProjectCard({ project }) {
         <div className="grid grid-cols-2 gap-4 border-t border-zinc-800/40 pt-4 mb-5">
           <div>
             <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Invested</span>
-            <span className="text-sm font-bold text-white">${project.invested.toLocaleString()}</span>
+            <span className="text-sm font-bold text-white">${project.invested}</span>
           </div>
           <div className="text-right">
             <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Target</span>
-            <span className="text-sm font-bold text-zinc-400">${project.target.toLocaleString()}</span>
+            <span className="text-sm font-bold text-zinc-400">${project.target}</span>
           </div>
         </div>
 

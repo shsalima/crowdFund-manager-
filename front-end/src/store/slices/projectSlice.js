@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const{VITE_API_URL}= import.meta.env
 export const fetchProjects= createAsyncThunk(
@@ -6,12 +8,14 @@ export const fetchProjects= createAsyncThunk(
     "projects/fetchProjects",
     async (_, { rejectWithValue }) => {
         try{
-            const response= await axios.get(`${VITE_API_URL}/projects`, {
+            const response= await axios.get(`${VITE_API_URL}/project`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
+            // console.log(response.data);
             return response.data;
         
         }catch(error){
+            console.log(error);
             return rejectWithValue(error.response?.data?.message || "Failed to fetch projects");
         }
     }
