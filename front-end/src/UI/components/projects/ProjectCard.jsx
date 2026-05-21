@@ -60,7 +60,7 @@ export default function ProjectCard({ project }) {
               Invested
             </span>
             <span className="text-sm font-bold text-white">
-              ${project.currentAmount }
+              ${project.initialInvestment}
             </span>
           </div>
           <div className="text-right">

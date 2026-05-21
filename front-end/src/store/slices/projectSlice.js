@@ -21,6 +21,28 @@ export const fetchProjects= createAsyncThunk(
     }
 )
 
+
+
+export const createProject= createAsyncThunk(
+    "projects/createProject",
+    async (projectData, { rejectWithValue }) => {
+        try{
+            const response= await axios.post(`${VITE_API_URL}/project/create`, projectData, {
+                headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+            })
+            console.log("Project created:", response.data);
+            return response.data;
+        }catch(error){
+            console.log("Error creating project:", error.response.data);
+            return rejectWithValue(error.response?.data?.message || "Failed to create project");
+        }
+    }
+
+)
+
+
+
+
 const projectSlice= createSlice({
     name: "projects",
     initialState:{ items:[], loading: false, error: null},
@@ -39,6 +61,9 @@ const projectSlice= createSlice({
             state.loading = false;
             state.error = action.payload;
         })
+        .addCase(createProject.fulfilled, (state, action) => {
+        state.items.push(action.payload); 
+        });
     }
 })
 export default projectSlice.reducer;

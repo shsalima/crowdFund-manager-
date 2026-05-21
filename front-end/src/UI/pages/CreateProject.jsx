@@ -11,7 +11,6 @@ export default function CreateProject() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 1. State dyal l-formulaire match m3a l-backend schema dyalk
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -33,19 +32,18 @@ export default function CreateProject() {
     setLoading(true);
     setError("");
 
-    const result = await dispatch(createProject({
-      title: formData.title,
-      description: formData.description,
-      capital: Number(formData.capital),
-      currentAmount: Number(formData.currentAmount) || 0,
-      maxPercentPerInvestor: formData.maxPercentPerInvestor,
-    }));
+  const result = await dispatch(createProject({
+  title: formData.title,
+  description: formData.description,
+  capital: Number(formData.capital),
+  initialInvestment: Number(formData.currentAmount) || 0, // 🌟 Reddi l-key smithom initialInvestment
+  maxPercentPerInvestor: formData.maxPercentPerInvestor,
+}));
 
     setLoading(false);
 
-    // Check ila daz l-projet successfully f l-backend
     if (createProject.fulfilled.match(result)) {
-      navigate("/projects"); // rj3i l-user direct l la page de projects
+      navigate("/projects"); 
     } else {
       setError(result.payload || "Something went wrong while creating the project");
     }

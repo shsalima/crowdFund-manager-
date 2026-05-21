@@ -10,6 +10,7 @@ export default function Projects() {
     const dispatch= useDispatch()
 
     const {items:projects, loading, error}= useSelector((state)=> state.projects)
+    console.log( projects); // Debug: afficher les projets récupérés du store
 
 
     useEffect(()=>{
