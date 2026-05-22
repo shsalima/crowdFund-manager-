@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft, Settings, Trash2, Clock, CheckCircle } from "lucide-react";
 import {  deleteProject, fetchProjects } from "../../store/slices/projectSlice";
 import ProjectMainInfo from "../components/projects/ProjectMainInfo";
-// import ProjectInvestorsList from "../components/projects/ProjectInvestorsList";
+import ProjectInvestorsList from "../components/projects/ProjectInvestorsList";
 
 
 export default function DetailsProject() {
@@ -77,7 +77,11 @@ const handleDelete = async () => {
             {project.status}
           </span>
           <span className="text-[11px] font-medium text-zinc-500">
-            Created on 15/01/2024
+            {new Date(project.createdAt).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric"
+            })}
           </span>
         </div>
         
@@ -91,7 +95,7 @@ const handleDelete = async () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         <ProjectMainInfo project={project} />
-        {/* <ProjectInvestorsList project={project} /> */}
+        <ProjectInvestorsList project={project} />
       </div>
     </div>
   );

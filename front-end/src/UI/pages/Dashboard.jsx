@@ -30,10 +30,8 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* 🟢 1. Component 4 Cards d l-Stats */}
       <StatsCards projects={projects} />
 
-      {/* 🟢 2. Component List d Recent Projects */}
       <RecentProjects projects={projects} />
 
     </div>

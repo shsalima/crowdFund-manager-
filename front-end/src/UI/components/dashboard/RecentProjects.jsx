@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import ProjectCard from "../projects/ProjectCard";
 
 export default function RecentProjects({ projects }) {
-  // Jib ghir l-3 d les projets l-khra li t-creyaw
+  
   const recentItems = projects.slice(-3).reverse();
 
   return (

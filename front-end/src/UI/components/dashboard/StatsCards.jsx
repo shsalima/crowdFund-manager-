@@ -7,8 +7,7 @@ export default function StatsCards({ projects }) {
 const closedProjects = projects.filter(p => p.status === "closed" || p.currentAmount >= p.capital).length;
   const totalProjects = projects.length;
 
-  const successfulProjects = projects.filter(p => p.status === "closed" || p.currentAmount >= p.capital).length;
-  const successRate = totalProjects > 0 ? Math.round((successfulProjects / totalProjects) * 100) : 0;
+
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -17,9 +16,7 @@ const closedProjects = projects.filter(p => p.status === "closed" || p.currentAm
           <div className="p-2.5 bg-zinc-800/30 border border-zinc-800/60 rounded-xl text-zinc-400">
             <Wallet size={18} />
           </div>
-          <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/10">
-            {successRate}% Success
-          </span>
+          
         </div>
         <span className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">
           Total Capital Raised
