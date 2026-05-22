@@ -1,39 +1,45 @@
-import { MoveRight } from "lucide-react";
-
-import { Link } from "react-router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import RecentProjects from "../components/dashboard/RecentProjects";
+import StatsCards from "../components/dashboard/StatsCards";
+import { fetchProjects } from "../../store/slices/projectSlice";
+// import { fetchProjects } from "../../store/slices/projectSlice";
+// import StatsCards from "../../components/dashboard/StatsCards";
+// import RecentProjects from "../../components/dashboard/RecentProjects";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  
+  // 🚀 Jib dynamic les projects data mn Redux Toolkit Store
+  const { items: projects, loading } = useSelector((state) => state.projects);
 
+  useEffect(() => {
+    if (projects.length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, [dispatch, projects.length]);
 
- return (
-    <div className="space-y-10 max-w-[1200px] mx-auto pt-4">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto voluptas dolorum ea eligendi possimus officia alias corrupti temporibus pariatur, blanditiis modi quas inventore, natus nam perspiciatis. Doloribus deleniti quis aspernatur?
+  if (loading) return <div className="text-zinc-400 text-sm text-center py-20">Loading Dashboard...</div>;
+
+  return (
+    <div className="max-w-[1200px] mx-auto pt-4 px-4 space-y-10">
       
-      {/* <div>
-        <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Welcome back, Alex</h1>
-        <p className="text-sm text-zinc-400">Here's what's happening with your projects today.</p>
+      {/* Welcome Message Header */}
+      <div className="space-y-1">
+        <h1 className="text-2xl font-black text-white tracking-tight">
+          Welcome back, Alex
+        </h1>
+        <p className="text-xs text-zinc-500 font-medium">
+          Here's what's happening with your projects today.
+        </p>
       </div>
 
-    
-      <DashboardStats />
+      {/* 🟢 1. Component 4 Cards d l-Stats */}
+      <StatsCards projects={projects} />
 
-    
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold text-white tracking-wide">Recent Projects</h2>
-          <Link 
-          to="/projects"
-          className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 transition-all cursor-pointer">
-            <span>View all projects</span>
-            <MoveRight size={14} />
-          </Link>
-        </div>
+      {/* 🟢 2. Component List d Recent Projects */}
+      <RecentProjects projects={projects} />
 
-      
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-         
-        </div>
-      </div> */}
     </div>
   );
 }
