@@ -25,13 +25,12 @@ export default function RegisterForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLocalError('');
-        // if (userData.password !== userData.confirmPassword) return setLocalError('Passwords do not match');
-        // if (!agree) return setLocalError('You must agree to the Terms & Conditions');
+
 
         const { name, email, password,role } = userData;
-        dispatch(registerUser({ name, email, password }));
+        dispatch(registerUser({ name, email, password, role }));
     };
-    console.log()
+    console.log(userData)
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
             {(error || localError) && (
@@ -59,19 +58,7 @@ export default function RegisterForm() {
             </div>
 
             
-                 <div>
-        <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">I want to register as</label>
-         <select 
-            name="role" 
-          value={userData.role} 
-        onChange={handleChange}
-        className="w-full bg-[#16171a] border border-zinc-800/80 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-700 transition-all appearance-none cursor-pointer"
-    >
-        <option value="project owner" className="bg-[#16171a]">Project Owner </option>
-        
-        <option value="ivestor" className="bg-[#16171a]">Investor </option>
-    </select>
-      </div>
+       
 
             <button type="submit" disabled={loading} className="w-full bg-white hover:bg-zinc-200 disabled:bg-zinc-500 text-[#0b0c0e] font-semibold text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-200">
                 {loading ? 'Creating Account...' : 'Create Account'}

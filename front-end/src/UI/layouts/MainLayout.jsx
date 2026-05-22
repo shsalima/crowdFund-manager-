@@ -10,27 +10,25 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
 
 export default function MainLayout({ children }) {
-  // Jabna l-path l-hali dyal l'application
   const { pathname } = useLocation();
-  const dispatch = useDispatch(); // 4. Crée-ina dispatch
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   
 
-  // Hna safi t9ad l-ghalat: l-variable isActive db rahi m-définya mzyan
   const getLinkStyle = (path) => {
     const isActive = pathname === path;
     return (
       `w-full px-4 py-3 rounded-xl flex items-center gap-3 font-medium text-sm transition-all duration-200 ` +
       (isActive
-        ? "bg-white text-[#0b0c0e]" // Ila knti f la page (Active): bg bayda w l-ktba khla
-        : "text-zinc-400 hover:bg-[#111214] hover:text-white") // Hover normal: bg rmadiya khfifa
+        ? "bg-white text-[#0b0c0e]" 
+        : "text-zinc-400 hover:bg-[#111214] hover:text-white") 
     );
   };
 
 
   const handleLogout = () => {
-    dispatch(logout()); // Had l-khdma kat-msa7 l-token mn Redux + LocalStorage
-    navigate("/login"); // Kat-di l-user direct l-login page
+    dispatch(logout()); 
+    navigate("/login"); 
   };
 
 
@@ -93,7 +91,7 @@ export default function MainLayout({ children }) {
           </div>
         </aside>
       )}
-      <div>
+      <div className="flex-1 ">
         {isAuthPage == false && <AppHeader />}
         <main className="flex-1 p-6">{children}</main>
       </div>
