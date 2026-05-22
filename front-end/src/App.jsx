@@ -9,7 +9,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Projects from "./UI/pages/Projects";
 import CreateProject from "./UI/pages/CreateProject";
+import ProjectDetails from "./UI/pages/DetailsProject";
 import DetailsProject from "./UI/pages/DetailsProject";
+
 
 function App() {
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<Projects/>} />
-          <Route path="/projects/:id" element={<DetailsProject/>}/>
+          <Route path="/project/:id" element={<DetailsProject/>}/>
           <Route path="/create-project" element={<CreateProject/>} />
           <Route path="/" element={isAuth ? <Dashboard/> : <Login/>}/>
         </Routes>

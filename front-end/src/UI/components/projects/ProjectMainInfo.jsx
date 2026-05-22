@@ -4,8 +4,11 @@ export default function ProjectMainInfo({ project }) {
   const isOpen = project.status === "open";
   
   const progress = project.capital > 0 
-    ? Math.min(Math.round(((project.initialInvestment || project.currentAmount || 0) / project.capital) * 100), 100)
+    ? Math.min(Math.round(((project.
+currentAmount ) / project.capital) * 100), 100)
     : 0;
+
+    const investorsCount = project.investors ? project.investors.length : 0;
 
   return (
     <div className="bg-[#111214] border border-zinc-800/50 rounded-2xl p-8 space-y-8 shadow-xl w-full lg:col-span-2">
@@ -16,7 +19,8 @@ export default function ProjectMainInfo({ project }) {
         <div className="flex justify-between items-baseline flex-wrap gap-2">
           <div className="flex items-baseline gap-2">
             <h2 className="text-4xl font-extrabold text-white">
-              ${(project.initialInvestment || project.currentAmount || 0)}
+              ${(project.
+currentAmount )}
             </h2>
             <span className="text-xs text-zinc-500 font-medium">
               of ${project.capital}
@@ -37,17 +41,10 @@ export default function ProjectMainInfo({ project }) {
       </div>
 
       <div className="grid grid-cols-3 gap-6 pt-4 border-t border-zinc-800/40">
-        <div>
-          <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">Min. Entry</span>
-          <span className="text-lg font-bold text-white">$50,000</span>
-        </div>
-        <div>
-          <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">Max % per Inv.</span>
-          <span className="text-lg font-bold text-white">{project.maxPercentPerInvestor || 10}%</span>
-        </div>
+       
         <div>
           <span className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">Investors</span>
-          <span className="text-lg font-bold text-white">3</span>
+          <span className="text-lg font-bold text-white">{investorsCount}</span>
         </div>
       </div>
     </div>

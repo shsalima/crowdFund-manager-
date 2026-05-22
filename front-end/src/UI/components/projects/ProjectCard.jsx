@@ -1,8 +1,16 @@
 import { CheckCircle, Clock, MoveRight, Trash2 } from "lucide-react";
-import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router";
+import { deleteProject } from "../../../store/slices/projectSlice";
+
 
 export default function ProjectCard({ project }) {
-  if (!project) return null;
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  
 
   const isOpen = project.status === "open";
 
@@ -13,6 +21,19 @@ export default function ProjectCard({ project }) {
           100,
         )
       : 0;
+
+
+      const handleDelete = async () => {
+        if (window.confirm("Are you sure you want to permanently delete this project?")) {
+          const result = await dispatch(deleteProject(project._id));
+          
+          if (deleteProject.fulfilled.match(result)) {
+            navigate("/projects"); 
+          } else {
+            alert(result.payload || "Failed to delete the project");
+          }
+        }
+      };
 
   return (
     <div className="bg-[#111214] border border-zinc-800/50 rounded-2xl p-6 flex flex-col justify-between transition-all hover:border-zinc-700/80">
@@ -28,7 +49,8 @@ export default function ProjectCard({ project }) {
             {isOpen ? <Clock size={12} /> : <CheckCircle size={12} />}
             {project.status}
           </span>
-          <button className="text-zinc-500 hover:text-red-400 p-2 hover:bg-red-500/10 rounded-xl transition-all cursor-pointer">
+          <button 
+          onClick={handleDelete} className="text-zinc-500 hover:text-red-400 p-2 hover:bg-red-500/10 rounded-xl transition-all cursor-pointer">
             <Trash2 size={16} />
           </button>
         </div>
@@ -61,7 +83,8 @@ export default function ProjectCard({ project }) {
               Invested
             </span>
             <span className="text-sm font-bold text-white">
-              ${project.initialInvestment}
+              ${project.
+currentAmount}
             </span>
           </div>
           <div className="text-right">
@@ -74,8 +97,8 @@ export default function ProjectCard({ project }) {
           </div>
         </div>
 
-        <Link to={`/projects/${project.id}`} className="w-full bg-[#16171a] hover:bg-zinc-800 text-white font-medium text-xs py-3 rounded-xl border border-zinc-800/80 flex items-center justify-center gap-2 transition-all cursor-pointer">
-        
+        <Link to={`/project/${project._id}`} className="w-full bg-[#16171a] hover:bg-zinc-800 text-white font-medium text-xs py-3 rounded-xl border border-zinc-800/80 flex items-center justify-center gap-2 transition-all cursor-pointer">
+
           <span>View Details</span>
           <MoveRight size={14} />
         </Link>

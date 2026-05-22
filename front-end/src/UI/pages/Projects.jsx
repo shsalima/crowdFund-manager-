@@ -1,16 +1,17 @@
 import { Plus } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
-import ProjectCard from "../components/dashboard/ProjectCard"
+
 import { useEffect } from "react"
 import { Link } from "react-router"
 import { fetchProjects } from "../../store/slices/projectSlice"
+import ProjectCard from "../components/projects/ProjectCard"
 
 
 export default function Projects() {
     const dispatch= useDispatch()
 
     const {items:projects, loading, error}= useSelector((state)=> state.projects)
-    console.log( projects); // Debug: afficher les projets récupérés du store
+  
 
 
     useEffect(()=>{

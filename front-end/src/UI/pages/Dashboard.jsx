@@ -1,6 +1,5 @@
 import { MoveRight } from "lucide-react";
-import DashboardStats from "../components/dashboard/DashboardStats";
-import ProjectCard from "../components/dashboard/ProjectCard";
+
 import { Link } from "react-router";
 
 export default function Dashboard() {

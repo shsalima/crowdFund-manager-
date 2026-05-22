@@ -43,6 +43,52 @@ export const createProject= createAsyncThunk(
 
 
 
+
+
+
+
+
+export const closeProject = createAsyncThunk(
+  "projects/closeProject",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/project/${id}/close`, {}, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      });
+      return response.data; 
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || "Failed to close project");
+    }
+  }
+);
+
+export const deleteProject = createAsyncThunk(
+  "projects/deleteProject",
+  async (id, { rejectWithValue }) => {
+    console.log("Attempting to delete project with ID:", id); 
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/project/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      });
+      return id; 
+    } catch (error) {
+ console.log("Error deleting project:", error.response.data);
+       return rejectWithValue(error.response?.data?.message || "Failed to delete project");
+    }
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
 const projectSlice= createSlice({
     name: "projects",
     initialState:{ items:[], loading: false, error: null},
@@ -63,7 +109,15 @@ const projectSlice= createSlice({
         })
         .addCase(createProject.fulfilled, (state, action) => {
         state.items.push(action.payload); 
-        });
+        })
+
+        .addCase(closeProject.fulfilled, (state, action) => {
+  const index = state.items.findIndex(p => p._id === action.payload._id);
+  if (index !== -1) state.items[index] = action.payload;
+})
+.addCase(deleteProject.fulfilled, (state, action) => {
+  state.items = state.items.filter(p => p._id !== action.payload);
+});
     }
 })
 export default projectSlice.reducer;
