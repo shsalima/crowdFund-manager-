@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import RecentProjects from "../components/dashboard/RecentProjects";
 import StatsCards from "../components/dashboard/StatsCards";
 import { fetchProjects } from "../../store/slices/projectSlice";
-// import { fetchProjects } from "../../store/slices/projectSlice";
-// import StatsCards from "../../components/dashboard/StatsCards";
-// import RecentProjects from "../../components/dashboard/RecentProjects";
+
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   
-  // 🚀 Jib dynamic les projects data mn Redux Toolkit Store
   const { items: projects, loading } = useSelector((state) => state.projects);
 
   useEffect(() => {
@@ -24,10 +21,9 @@ export default function Dashboard() {
   return (
     <div className="max-w-[1200px] mx-auto pt-4 px-4 space-y-10">
       
-      {/* Welcome Message Header */}
       <div className="space-y-1">
         <h1 className="text-2xl font-black text-white tracking-tight">
-          Welcome back, Alex
+          Welcome back, here's your dashboard.
         </h1>
         <p className="text-xs text-zinc-500 font-medium">
           Here's what's happening with your projects today.

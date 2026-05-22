@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft, Settings, Trash2, Clock, CheckCircle } from "lucide-react";
 import {  deleteProject, fetchProjects } from "../../store/slices/projectSlice";
 import ProjectMainInfo from "../components/projects/ProjectMainInfo";
+// import ProjectInvestorsList from "../components/projects/ProjectInvestorsList";
 
 
 export default function DetailsProject() {
@@ -90,6 +91,7 @@ const handleDelete = async () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         <ProjectMainInfo project={project} />
+        {/* <ProjectInvestorsList project={project} /> */}
       </div>
     </div>
   );
