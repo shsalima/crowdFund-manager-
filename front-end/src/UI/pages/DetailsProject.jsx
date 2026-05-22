@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft, Settings, Trash2, Clock, CheckCircle } from "lucide-react";
-import { closeProject, deleteProject, fetchProjects } from "../../store/slices/projectSlice";
+import {  deleteProject, fetchProjects } from "../../store/slices/projectSlice";
 import ProjectMainInfo from "../components/projects/ProjectMainInfo";
 
 
@@ -26,11 +26,7 @@ export default function DetailsProject() {
 
   const isOpen = project.status === "open";
 
-  const handleClose = () => {
-    if (window.confirm("Are you sure you want to close this project?")) {
-      dispatch(closeProject(project._id));
-    }
-  };
+
 
 const handleDelete = async () => {
   if (window.confirm("Are you sure you want to permanently delete this project?")) {

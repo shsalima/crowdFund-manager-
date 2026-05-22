@@ -11,13 +11,14 @@ export default function ProjectCard({ project }) {
   const dispatch = useDispatch();
 
   
-
-  const isOpen = project.status === "open";
+  const isOpen = project.status === "open" && project.currentAmount < project.capital;
+  
+  const displayStatus = isOpen ? "open" : "closed";
 
   const progress =
     project.capital > 0
       ? Math.min(
-          Math.round(((project.currentAmount || 0) / project.capital) * 100),
+          Math.round(((project.currentAmount ) / project.capital) * 100),
           100,
         )
       : 0;
@@ -43,11 +44,11 @@ export default function ProjectCard({ project }) {
             className={`text-[10px] font-bold px-2 py-1 rounded-md border flex items-center gap-1.5 uppercase ${
               isOpen
                 ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
-                : "text-zinc-400 bg-zinc-500/10 border-zinc-500/20"
+                : "text-red-400 bg-red-500/10 border-red-500/20"
             }`}
           >
             {isOpen ? <Clock size={12} /> : <CheckCircle size={12} />}
-            {project.status}
+            {displayStatus}
           </span>
           <button 
           onClick={handleDelete} className="text-zinc-500 hover:text-red-400 p-2 hover:bg-red-500/10 rounded-xl transition-all cursor-pointer">

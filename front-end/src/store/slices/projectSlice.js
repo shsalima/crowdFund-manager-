@@ -48,19 +48,7 @@ export const createProject= createAsyncThunk(
 
 
 
-export const closeProject = createAsyncThunk(
-  "projects/closeProject",
-  async (id, { rejectWithValue }) => {
-    try {
-      const response = await axios.put(`${import.meta.env.VITE_API_URL}/project/${id}/close`, {}, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-      });
-      return response.data; 
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || "Failed to close project");
-    }
-  }
-);
+
 
 export const deleteProject = createAsyncThunk(
   "projects/deleteProject",
@@ -111,10 +99,7 @@ const projectSlice= createSlice({
         state.items.push(action.payload); 
         })
 
-        .addCase(closeProject.fulfilled, (state, action) => {
-  const index = state.items.findIndex(p => p._id === action.payload._id);
-  if (index !== -1) state.items[index] = action.payload;
-})
+
 .addCase(deleteProject.fulfilled, (state, action) => {
   state.items = state.items.filter(p => p._id !== action.payload);
 });

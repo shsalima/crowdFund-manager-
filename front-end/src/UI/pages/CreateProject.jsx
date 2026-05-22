@@ -36,7 +36,7 @@ export default function CreateProject() {
   title: formData.title,
   description: formData.description,
   capital: Number(formData.capital),
-  initialInvestment: Number(formData.currentAmount) || 0, // 🌟 Reddi l-key smithom initialInvestment
+  initialInvestment: Number(formData.currentAmount) || 0, 
   maxPercentPerInvestor: formData.maxPercentPerInvestor,
 }));
 
@@ -115,6 +115,7 @@ export default function CreateProject() {
               onChange={handleChange}
               required
               placeholder="500000" 
+             
               className="w-full bg-[#16171a] border border-zinc-800/80 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-700 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
@@ -129,6 +130,7 @@ export default function CreateProject() {
               value={formData.currentAmount}
               onChange={handleChange}
               placeholder="50000" 
+              max={formData.capital }
               className="w-full bg-[#16171a] border border-zinc-800/80 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-700 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
