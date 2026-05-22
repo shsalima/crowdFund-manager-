@@ -1,4 +1,5 @@
 import { Trash2, MoveRight, Clock, CheckCircle } from "lucide-react";
+import { Link } from "react-router";
 
 export default function ProjectCard({ project }) {
   const isOpen = project.status === "OPEN";
@@ -53,10 +54,10 @@ export default function ProjectCard({ project }) {
         </div>
 
       
-        <button className="w-full bg-[#16171a] hover:bg-zinc-800 text-white font-medium text-xs py-3 rounded-xl border border-zinc-800/80 flex items-center justify-center gap-2 transition-all cursor-pointer">
+        <Link to={`/projects/${project.id}`} className="w-full bg-[#16171a] hover:bg-zinc-800 text-white font-medium text-xs py-3 rounded-xl border border-zinc-800/80 flex items-center justify-center gap-2 transition-all cursor-pointer">
           <span>View Details</span>
           <MoveRight size={14} />
-        </button>
+        </Link>
       </div>
     </div>
   );
